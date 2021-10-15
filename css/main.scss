@@ -1,0 +1,165 @@
+// <МИКСИНЫ> ==========================================================================================================================================
+@mixin rotate($deg){-moz-transform: rotate($deg);-ms-transform:rotate($deg);-webkit-transform: rotate($deg); -o-transform: rotate($deg);transform: rotate($deg);}
+@mixin scale($num){-moz-transform: scale($num);-ms-transform: scale($num);-webkit-transform: scale($num);-o-transform: scale($num);transform: scale($num);}
+@mixin skew($num){-webkit-transform: skewX($num);-moz-transform: skewX($num);-ms-transform: skewX($num);-o-transform: skewX($num);transform: skewX($num);}
+@mixin cnt($h){display: flex;flex-direction: column; height: $h; text-align: center; align-items: stretch;justify-content: center;}
+@mixin tr($x,$y,$z){transform: translate3d($x,$y,$z);};
+@mixin flexbox() {display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; font-size: 0;}
+@mixin flexorder($val) {-webkit-box-ordinal-group: $val; -moz-box-ordinal-group: $val; -ms-flex-order:$val; -webkit-order:$val; order:$val}
+// </МИКСИНЫ> ==========================================================================================================================================
+
+// ================== VARIABLES CSS ====================
+:root {
+  --header-height: 3rem;
+  /*========== Colors ==========*/
+  --hue-color: 206;
+  --black-color: hsl(var(--hue-color), 4%, 4%);
+  --black-color-alt: hsl(var(--hue-color), 4%, 8%);
+  --title-color: hsl(var(--hue-color), 4%, 95%);
+  --text-color: hsl(var(--hue-color), 4%, 75%);
+  --text-color-light: hsl(var(--hue-color), 4%, 65%);
+  --white-color: #FFF;
+  --body-color: hsl(var(--hue-color), 4%, 6%);
+  --container-color: hsl(var(--hue-color), 4%, 10%);
+  --text-gradient: linear-gradient(hsl(var(--hue-color), 4%, 24%), hsl(var(--hue-color), 4%, 8%));
+  --scroll-thumb-color: hsl(var(--hue-color), 4%, 16%);
+  --scroll-thumb-color-alt: hsl(var(--hue-color), 4%, 20%);
+  /*========== Font and typography ==========*/
+  --body-font: 'Poppins', sans-serif;
+  --biggest-font-size: 5rem;
+  --bigger-font-size: 3.5rem;
+  --big-font-size: 2.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1.125rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+  --text-line-height: 2rem;
+  /*========== Font weight ==========*/
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  /*========== Margenes Bottom ==========*/
+  --mb-0-5: .5rem;
+  --mb-0-75: .75rem;
+  --mb-1: 1rem;
+  --mb-1-5: 1.5rem;
+  --mb-2: 2rem;
+  --mb-2-5: 2.5rem;
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+// ============ Responsive typography
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 7.5rem;
+    --bigger-font-size: 4.5rem;
+    --big-font-size: 4rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+//  ================== Base ========================
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+// <Подключаем шрифты>==========================================================================================================================================
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+// </Подключаем шрифты> ==========================================================================================================================================
+
+
+
+// <Шрифт по умолчанию> ==========================================================================================================================================
+$fontfamily: 'Poppins';
+
+// </Шрифт по умолчанию> =========================================================================================================================================
+
+
+// <Переменные> ==================================================================================================================================================
+$minwidth:320px;
+$mw:1170;
+$md1:$mw+12;
+$md2:992.98;
+$md3:767.98;
+$md4:479.98;
+// </Переменные> ==================================================================================================================================================
+
+
+// <Обнуление, общие параметры>  ==================================================================================================================================
+*{padding: 0px; margin: 0px; border: 0px;}
+*, *:before, *:after {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+:focus, :active {outline: none;}
+a:focus, a:active {outline: none;}
+aside, nav, footer, header, section {display: block;}
+html,body {height: 100%; margin: 0; padding: 0; min-width: $minwidth; position: relative; width: 100%; scroll-behavior: smooth;}
+body {margin: var(--header-height) 0 0 0;color:var(--text-color);font-size: var(--normal-font-size); background-color: var(--body-color);  line-height: 1; font-size: 14px; font-family: $fontfamily; -ms-text-size-adjust: 100%; -moz-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;
+    &.lock {overflow: hidden;
+        @media (max-width: $md3 + px) {
+            width: 100%;
+            position: fixed;
+            overflow: hidden;
+        }
+    }
+}
+input,button,textarea {font-family: $fontfamily;}
+input::-ms-clear{display: none;}
+button{cursor: pointer; outline: none;}
+button::-moz-focus-inner {padding: 0;border: 0;}
+a,a:visited{text-decoration: none;  font-family: $fontfamily;}
+a:hover {text-decoration: none;}
+ul li {list-style: none;}
+img { height: auto; max-width: 100%;}
+h1,h2,h3 {
+    color: var(--title-color);
+}
+// =========== REUSABLE CSS CLASSES ==========
+.section {
+    padding: 4rem 0 2rem;
+}
+
+.section__title{
+    font-size: var(--bigger-font-size);
+    text-align: center;
+    margin-bottom: var(--mb-2-5);
+}
+
+.section__title-gradient {
+    background: var(--text-gradient);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+}
+
+// ============== LAYOUT =============
+.main {
+    overflow: hidden; // For animations and images
+} 
+
+.container {
+    max-width: 968px;
+    margin-left: var(--mb-1-5);
+    margin-right: var(--mb-1-5);
+}
+
+.grid {
+    display: grid;
+}
+
+// </Обнуление, общие параметры> ==================================================================================================================================
+
+// <Подключение файлов стилей страниц и элементов>
+@import 'style.scss';
+@import 'media.scss';
+// </Подключение файлов стилей страниц и элементов>
